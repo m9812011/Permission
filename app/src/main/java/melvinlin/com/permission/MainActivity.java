@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        /**
         //檢查是否取得權限
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
 
@@ -34,15 +33,8 @@ public class MainActivity extends AppCompatActivity {
             this.secondRequestPermission();
         } else {
             Toast.makeText(this, "已經拿到權限囉!", Toast.LENGTH_SHORT).show();
-        }*/
-
-        if (PermissionHelper.checkPermission(MainActivity.this, Manifest.permission.CAMERA)) {
-            PermissionHelper.secondRequestPermissionDialog(MainActivity.this,
-                    Manifest.permission.CAMERA,
-                    "單純使用在拍照功能，如果您不給我相機的權限，您將無法使用此功能");
-        } else {
-            Toast.makeText(this, "已經拿到權限囉!", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     public void secondRequestPermission() {
@@ -74,18 +66,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onClick2(View view) {
-        int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
-        Log.d("MainActivity", "permissionStatus : " + permissionStatus);
-        if (permissionStatus != PackageManager.PERMISSION_GRANTED) {
-            // 沒有授權時
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
-            Toast.makeText(this, "準備授權...", Toast.LENGTH_LONG).show();
-            Log.d("MainActivity", "準備授權...");
-        } else {
-            // 已授權
-            Toast.makeText(this, "已經拿到授權!!!", Toast.LENGTH_LONG).show();
-            Log.d("MainActivity", "已經拿到授權!!!");
-        }
-    }
 }
